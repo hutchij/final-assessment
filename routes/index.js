@@ -58,7 +58,7 @@ var findRecords = function(db, callback) {
 }
 
 router.post('/api/favorites', function(req, res) {
-	console.log('in api post /favorites', req.body)
+	console.log('********************in api post /favorites', req.body)
 		// handleAddUser(req.body, function(err, results){
 		// 	assert(null, err);
 		// 	res.json(results)

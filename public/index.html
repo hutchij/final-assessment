@@ -34,20 +34,20 @@
   <div ng-controller="GiffyListCtrl">
   <h2> Trending on the interwebs <h2>
     <ul>
-    <li ng-repeat="gif in giflist"><img src='{{gif.images.fixed_width_small.url}}'></img><input type="checkbox" ng-click="select(gif)"></input></li>
+    <li ng-repeat="gif in giflist"><img src='{{gif.images.fixed_width_small.url}}'></img><input type="checkbox" ng-click="selectToSave(gif)"></input></li>
     </ul>
       <form novalidate class="simple-form">
       Name: <input type="text" ng-model="selection.tagstring" /><br />
       <input type="submit" ng-click="saveFavorites()" value="Save to favorites" />
     </form>
 
-    <!--pre>selected = {{selected.count}}</pre-->
+    <!--pre>selected = {{selected | json}}</pre-->
   </div>
 
   <div ng-controller="PrivateGifsCtrl">
    <h2> Your saved gifs <h2>
     <ul>
-    <li ng-repeat="gif in savedgifs"><span>{{gif.id}}</span><img src='{{gif.images.fixed_width_small.url}}'></img><input type="checkbox" ng-click="selectDelete(gif)"></input></li>
+    <li ng-repeat="gif in savedgifs"><span>{{gif.id}}</span><img src='{{gif.images.fixed_width_small.url}}'></img><input type="checkbox" ng-click="selectToDelete(gif)"></input></li>
     </ul>
       <form novalidate class="simple-form">
       <input type="submit" ng-click="delete()" value="Delete" />
