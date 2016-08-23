@@ -10,17 +10,53 @@
     <script src="public/module.js"></script>
   </head>
   <body>
-      <div ng-controller="GiffyListCtrl">
-          <ul>
-          <li ng-repeat="gif in giflist"><span>{{g.id}}</span><img src='{{gif.images.fixed_height.url}}'></img><button ng-click="select(gif)">Select</button></li>
-          </ul>
-            <form novalidate class="simple-form">
-            Name: <input type="text" ng-model="selection.tagstring" /><br />
-            <input type="submit" ng-click="save()" value="Save" />
-          </form>
 
-          <pre>selected = {{selected.count}}</pre>
-      </div>
+    <!--header>
+    <div class="nav">
+      <ul>
+        <li class="home"><a href="/home">Home</a></li>
+        <li class="private"><a href="/mine">My Gifs</a></li>
+
+      </ul>        <li><a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=abe797dd0bcf8911c15a">Click here</a></li>
+    </div>
+  </header-->
+
+  <div ng-controller="LoginCtrl">
+      <form novalidate class="simple-form">
+        Name: <input type="text" ng-model="user.name" /><br />
+      <a ng-show="user.name" href="https://github.com/login/oauth/authorize?scope=user:email&client_id=abe797dd0bcf8911c15a">"Sign in with GitHub"</a>
+      </form>
+
+  </div>
+
+
+  <!-- I was previously trying to load this as an angular template -->
+  <div ng-controller="GiffyListCtrl">
+  <h2> Trending on the interwebs <h2>
+    <ul>
+    <li ng-repeat="gif in giflist"><img src='{{gif.images.fixed_width_small.url}}'></img><input type="checkbox" ng-click="select(gif)"></input></li>
+    </ul>
+      <form novalidate class="simple-form">
+      Name: <input type="text" ng-model="selection.tagstring" /><br />
+      <input type="submit" ng-click="saveFavorites()" value="Save to favorites" />
+    </form>
+
+    <!--pre>selected = {{selected.count}}</pre-->
+  </div>
+
+  <div ng-controller="PrivateGifsCtrl">
+   <h2> Your saved gifs <h2>
+    <ul>
+    <li ng-repeat="gif in savedgifs"><span>{{gif.id}}</span><img src='{{gif.images.fixed_width_small.url}}'></img><input type="checkbox" ng-click="selectDelete(gif)"></input></li>
+    </ul>
+      <form novalidate class="simple-form">
+      <input type="submit" ng-click="delete()" value="Delete" />
+    </form>
+
+    <!--pre>selected = {{selected.count}}</pre-->
+  </div>
+
+
     <ng-view>
     </ng-view> 
   </body>
